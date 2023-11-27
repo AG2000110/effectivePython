@@ -1,0 +1,11 @@
+<h1>Notes</h1>
+<ul>
+{% for note in object_list %}
+    <li>{{ note.title }}</li>
+    <li>{{ note.body }}</li>
+    <li>{{ note.created_by.name }}</li>
+    <li>_____</li>
+{% empty %}
+    <li>No notes yet.</li>
+{% endfor %}
+</ul>

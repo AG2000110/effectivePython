@@ -1,0 +1,28 @@
+{% if user.is_authenticated %}
+    <p>Witaj, {{ user.username }}!</p>
+    <a href="{% url 'logout' %}">Wyloguj</a>
+{% else %}
+    <a href="{% url 'login' %}">Zaloguj</a>
+{% endif %}
+
+
+{% for note in object_list %}
+    <h2>Notatka {{ forloop.counter }}</h2>
+    <table>
+        <tr>
+            <th>Tytuł: </th>
+            <td>{{ note.title }}</td>
+        </tr>
+        <tr>
+            <th>Treść: </th>
+            <td>{{ note.content }}</td>
+        </tr>
+        <tr>
+            <th>Autor: </th>
+            <td>{{ note.created_by }}</td>
+        </tr>
+    </table>
+    <a href="{% url 'note-edit' note.id %}">Edytuj</a>
+    <a href="{% url 'note-delete' note.id %}">Usuń</a><br><br>
+{% endfor %}
+<a href="{% url 'note-new' %}">Dodaj nową notatkę</a>
